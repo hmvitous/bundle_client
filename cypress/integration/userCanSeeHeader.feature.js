@@ -4,6 +4,6 @@ describe("User Interface:", () => {
     });
   
     it("displays first header header", () => {
-      cy.get("h1").should("contain", "Hello world");
+      cy.get("h1").should("contain", "WELCOME TO BUNDLEUP");
     });
   });
