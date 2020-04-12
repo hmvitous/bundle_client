@@ -10,6 +10,7 @@ describe("user views the list of events", () => {
   });
 
   it("display event title", () => {
+    debugger
     cy.get("#event-title").should("contain", "Pizza with friends");
     cy.get("#event-description").should("contain", "Watch the derby with us");
   });

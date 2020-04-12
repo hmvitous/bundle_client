@@ -3,13 +3,13 @@
     {
       "id": 1,
       "title": "Pizza with friends",
-      "snippet": "Watch the derby with us",
+      "description": "Watch the derby with us",
       "category": ""
     },
     {
       "id": 2,
       "title": "Walking on Sunshine",
-      "snippet": "From Slussen to Skansen",
+      "description": "From Slussen to Skansen",
       "category": ""
     }
   ]
