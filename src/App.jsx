@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
+import EventList from "./EventsList";
 
-const App = () => {
-  return (
-    <div>
-      <h1>Hello world</h1>
-    </div>
-  );
-};
+
+class App extends Component {
+  render() {
+    return <div>
+      <EventList />
+    </div>;
+  }
+}
 
 export default App;
