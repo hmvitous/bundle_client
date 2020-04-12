@@ -1,15 +1,13 @@
-import React from "react";
-import EventList from './components/EventList'
+import React, { Component } from "react";
+import EventList from "./EventsList";
 
-const App = () => {
-  return (
-    <>
-    <div>
-      <h1>WELCOME TO BUNDLEUP</h1>
-    </div>
-    <EventList />
-    </>
-  );
-};
+
+class App extends Component {
+  render() {
+    return <div>
+      <EventList />
+    </div>;
+  }
+}
 
 export default App;
