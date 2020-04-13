@@ -4,7 +4,6 @@ class EventsList extends Component {
   state = {
     eventsIndex: [],
   };
-
   componentDidMount() {
     const axiosclient = axios.create({ baseURL: "http://localhost:3000" });
     axiosclient.get("/events").then((response) => {
@@ -14,7 +13,6 @@ class EventsList extends Component {
       });
     });
   }
-
   render() {
     const { eventsIndex } = this.state;
     const showEvents = eventsIndex.map((event) => {
@@ -28,5 +26,4 @@ class EventsList extends Component {
     return <div>{showEvents}</div>;
   }
 }
-
 export default EventsList;
