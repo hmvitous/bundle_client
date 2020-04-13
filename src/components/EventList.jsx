@@ -1,16 +1,28 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class EventList extends Component {
-  render() {
-    return (
-      <>
-        <div id="event-list">
-          <h2 id="event-title">Event List</h2>
-          <h2 id="event-description">Event Description</h2>
-        </div>
-      </>
-    );
-  }
-}
+    state = {
+      eventList: []
+    };
 
+    componentDidMount() {
+      axios.get("/events").then(response => {
+        this.setState({
+          eventList: response.data.events
+        });
+      });
+    }
+
+    render() {
+      let eventDisplay;
+      if (this.state.eventList !== []) {
+        eventDisplay = this.state.eventList.map(events => {
+          return(
+            <>
+            {events.title} {events.description}
+            </>
+          );
+        })
+      }
 export default EventList;
