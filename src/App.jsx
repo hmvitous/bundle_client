@@ -1,12 +1,12 @@
 import React from "react";
-import EventList from "./components/EventsList";
+import EventsList from "./components/EventsList";
 
 
 const App = () => {
   return (
     <>
       <div>
-        <EventList />
+        <EventsList />
       </div>
     </>
   )
