@@ -1,0 +1,14 @@
+{
+    "events": [
+      {
+        "id":1,
+        "title": "Lets Play Soccer",
+        "description": "We are a group of 20 people and we are missing 2 more to make a team"
+      }
+      // {
+      //   "title": "Walking on Sunshine",
+      //   "description": "From Slussen to Skansen"
+      // }
+
+    ]
+  } 
