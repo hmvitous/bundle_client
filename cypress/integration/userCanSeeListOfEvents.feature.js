@@ -3,15 +3,6 @@ describe("user views the list of activities", () => {
     cy.visit("/");
   });
 
-<<<<<<< HEAD
-  it("shows list of events", () => {
-    cy.get("#event-title").should("contain", "Lets Play Soccer");
-    cy.get("#event-description").should("contain", "We are a group of 9 people and we are missing 2 more to make a team");
-    // cy.get(".event-title").should("contain", "Walking on Sunshine");
-    // cy.get(".event-description").should("contain", "From Slussen to Skansen");
-  });
-});
-=======
   describe("successfully displays", () => {
     before(() => {
       cy.server();
@@ -54,4 +45,3 @@ describe("user views the list of activities", () => {
         });
       });
     });
->>>>>>> 13884a6432806d5fa9979bc5b884d3c10656fed0
