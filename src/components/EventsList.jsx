@@ -1,56 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { List, Placeholder, Image } from "semantic-ui-react";
+import { Placeholder } from "semantic-ui-react";
 
 const EventsList = () => {
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get("/events");
-        setEvents(response.data.events)
+        setEvents(response.data.events);
       } catch (error) {
-        debugger;
+       
       }
-    }
+    };
 
-    fetchEvents()
-  }, [])
+    fetchEvents();
+  }, []);
 
   return (
     <>
-      {events.map(event => {
+      {events.map((event) => {
         return (
           <div id={"event-" + event.id} key={event.id}>
             <Placeholder>
-              <Placeholder.Header image>
-                <Image src="/images/wireframe/image.png" size="small" />
-              </Placeholder.Header>
               <h3 id="title">{event.title}</h3>
               <Placeholder.Paragraph>
                 <p id="description">{event.description}</p>
-                <p id="category">{event.category}</p>
-                <p id="location">{event.location}</p>
               </Placeholder.Paragraph>
             </Placeholder>
-            <List>
-              <List.Item>
-                <List.Icon name="marker" />
-                <List.Content>Stockholm</List.Content>
-              </List.Item>
-              <List.Item>
-                <List.Icon name="mail" />
-                <List.Content>
-                  <a href="mailto:anish.kanswal@gmail.com">anish</a>
-                </List.Content>
-              </List.Item>
-            </List>
           </div>
         );
       })}
     </>
-  )
-}
+  );
+};
 
-export default EventsList
+export default EventsList;
