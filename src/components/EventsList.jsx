@@ -11,7 +11,6 @@ const EventsList = () => {
         const response = await axios.get("/events");
         setEvents(response.data.events);
       } catch (error) {
-       
       }
     };
 
