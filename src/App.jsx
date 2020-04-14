@@ -7,7 +7,10 @@ class App extends Component {
     return(
       <>
         <h1>BundleUp</h1>
+        <div>
         <EventsList/>
+        </div>
+    
       </>
     )
   }

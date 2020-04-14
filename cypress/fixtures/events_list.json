@@ -3,12 +3,17 @@
     {
       "id": 1,
       "title": "Lets Play Soccer",
-      "description": "We are a group of 20 people and we are missing 2 more to make two teams"
+      "description": "We are a group of 20 people and we are missing 2 more to make two teams",
+      "category":"Sports",
+      "location":"Field"
+      
     },
     {
       "id": 2,
       "title": "Walking on Sunshine",
-      "description": "From Slussen to Skansen"
+      "description": "From Slussen to Skansen",
+      "category":"Outdoors",
+      "location":"Woods"
     }
   ]
 }
