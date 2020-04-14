@@ -6,14 +6,14 @@ class EventsList extends Component {
   state = {
     eventsIndex: [],
   };
-  componentDidMount() {
-    const axiosclient = axios.create({ baseURL: "http://localhost:3000" });
-    axiosclient.get("/events").then((response) => {
+  async componentDidMount() {
+    try {
+      const response = await axios.get("/events");
       console.log(response);
       this.setState({
         eventsIndex: response.data.events,
       });
-    });
+    } catch (error) {}
   }
   render() {
     const { eventsIndex } = this.state;
@@ -25,10 +25,9 @@ class EventsList extends Component {
           <p id="category">{event.category}</p>
           <p id="location">{event.location}</p> */}
 
-           
           <Placeholder>
             <Placeholder.Header image>
-            <Image src='/images/wireframe/image.png' size='small' />
+              <Image src="/images/wireframe/image.png" size="small" />
             </Placeholder.Header>
             <h3 id="title">{event.title}</h3>
 
@@ -42,7 +41,7 @@ class EventsList extends Component {
           <Button color="facebook">
             <Icon name="facebook" /> Facebook
           </Button>
-          <Button color="instagram" attached='right'>
+          <Button color="instagram" attached="right">
             <Icon name="instagram" /> Instagram
           </Button>
           <Button animated="fade">
