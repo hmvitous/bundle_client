@@ -6,20 +6,28 @@ class EventsList extends Component {
   state = {
     eventsIndex: [],
   };
-  componentDidMount() {
-    const axiosclient = axios.create({ baseURL: "http://localhost:3000" });
-    axiosclient.get("/events").then((response) => {
+  async componentDidMount() {
+    try {
+      const response = await axios.get("/events");
       console.log(response);
       this.setState({
         eventsIndex: response.data.events,
       });
-    });
+    } catch (error) {}
   }
   render() {
     const { eventsIndex } = this.state;
     const showEvents = eventsIndex.map((event) => {
       return (
         <div id={"event-" + event.id} key={event.id}>
+<<<<<<< HEAD
+=======
+          {/* <h3 id="title">{event.title}</h3>
+          <p id="description">{event.description}</p>
+          <p id="category">{event.category}</p>
+          <p id="location">{event.location}</p> */}
+
+>>>>>>> 3e64f05ea24dc16a5ac938d46af027f623526af4
           <Placeholder>
             <Placeholder.Header image>
               <Image src="/images/wireframe/image.png" size="small" />
