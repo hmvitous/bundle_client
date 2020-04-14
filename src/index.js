@@ -3,9 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import axios from "axios";
-
 axios.default.baseURL = "http://localhost:3000";
-
 ReactDOM.render(<App />, document.getElementById("root"));
-
 serviceWorker.unregister();
