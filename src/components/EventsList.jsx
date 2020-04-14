@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button, Icon, List, Placeholder, Image } from "semantic-ui-react";
+import { List, Placeholder, Image } from "semantic-ui-react";
+
+
 class EventsList extends Component {
   state = {
     eventsIndex: [],
