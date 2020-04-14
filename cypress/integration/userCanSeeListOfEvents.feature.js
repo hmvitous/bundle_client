@@ -18,7 +18,7 @@ describe("user views the list of activities", () => {
         cy.get("#title").should("contain", "Lets Play Soccer");
         cy.get("#description").should(
           "contain",
-          "We are a group of 9 people and we are missing 2 more to make a team"
+          "We are a group of 20 people and we are missing 2 more to make two teams"
         );
       });
 
@@ -34,8 +34,8 @@ describe("user views the list of activities", () => {
 
         it("second event", () => {
           cy.get("#event-2").within(() => {
-            cy.get("#title").should("contain", "Shots and Beer");
-            cy.get("#description").should("contain", "Clubbing in Södermalm");
+            cy.get("#title").should("contain", "Walking on Sunshine");
+            cy.get("#description").should("contain", "From Slussen to Skansen");
           });
         });
       });
