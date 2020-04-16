@@ -1,36 +1,31 @@
 describe("user can create an event", () => {
   beforeEach(() => {
+    cy.visit("/")
     cy.server();
     cy.route({
       method: "POST",
       url: "http://localhost:3000/events",
-      response: "fixture:events_list.json",
+      response: "fixture:create_event_response.json",
     });
+    ;
+  });
 
-    beforeEach(() => {
-      cy.server();
-      cy.route({
-        method: "POST",
-        url: "http://localhost:3000/events",
-        response: "fixture:events_list.json",
-      });
-      cy.visit("/");
-    });
+  it("see create event form", () => {
+    cy.get("#create-form").should("contain", "Title");
+    cy.get("#create-form").should("contain", "Description");
+    cy.get("#create-form").should("contain", "Category");
+    cy.get("#create-form").contains("Create Event").click();
+  });
 
-    it("see create event form", () => {
-      cy.get("#create-form").should("contain", "Title");
-      cy.get("#create-form").should("contain", "Description");
-      cy.get("#create-form").should("contain", "Category");
-      cy.get("#create-form").contains("Create Event").click();
+  it("Can create event", () => {
+    cy.get("#create-form").within(() => {
+      cy.get("#title").type("Play baseball");
+      cy.get("#description").type("I need a lot of people");
+      // cy.get("#category").click()
+      // cy.get("#category").click("Sports")
+      cy.get("button").contains("Create Event").click();
     });
+    cy.get(".message").should("contain", "Your event has been created")
 
-    it("Can create event", () => {
-      cy.get(".create-event").within(() => {
-        cy.get(".title").should("contain","Play Soccer");
-        cy.get(".description").type("We need more players");
-        cy:get("category").type("sports")
-        cy.get("button").contains("Submit").click();
-      });
-    });
   });
 });
