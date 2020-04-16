@@ -7,7 +7,6 @@ describe("user can create an event", () => {
       url: "http://localhost:3000/events",
       response: "fixture:create_event_response.json",
     });
-    ;
   });
 
   it("see create event form", () => {

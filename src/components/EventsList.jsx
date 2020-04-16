@@ -25,8 +25,8 @@ const EventsList = () => {
             id={"event-" + event.id}
             key={event.id}
           >
-              <Header id="title">{event.title}</Header>
-              <p id="description">{event.description}</p>
+            <Header id="title">{event.title}</Header>
+            <p id="description">{event.description}</p>
           </Container>
         );
       })}
