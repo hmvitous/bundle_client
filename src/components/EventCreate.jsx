@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
-import axios from "axios"
+import axios from "axios";
 
 const categoryOptions = [
   { key: "s", text: "Sports", value: "sports" },
@@ -18,11 +18,9 @@ const peopleAmount = [
   { key: "5", text: "5", value: "5" },
 ];
 
-
-
 const EventCreate = () => {
-  const [category, setCategory] = useState('')
-  const [people, setPeople] = useState('')
+  const [category, setCategory] = useState("");
+  const [people, setPeople] = useState("");
 
   const submitEvent = async (event) => {
     const response = await axios.post("/events", {
@@ -30,10 +28,10 @@ const EventCreate = () => {
         title: event.target.title.value,
         description: event.target.description.value,
         category: category,
-        attendees: people
-      }
-    })
-  }
+        attendees: people,
+      },
+    });
+  };
 
   return (
     <>
@@ -47,19 +45,18 @@ const EventCreate = () => {
           <label>Description</label>
           <input id="description" placeholder="Description" />
         </Form.Field>
-        
+
         <Form.Select
           name="people"
           fluid
           label="Number of People"
           options={peopleAmount}
           placeholder="Max limit 10"
-          onChange={(event,data) => {
-            setPeople(data.value)
+          onChange={(event, data) => {
+            setPeople(data.value);
           }}
-
         />
-        
+
         <Form.Select
           name="category"
           id="category"
@@ -68,15 +65,14 @@ const EventCreate = () => {
           debugger
           options={categoryOptions}
           placeholder="Category"
-          onChange={(event,data) => {
-            setCategory(data.value)
+          onChange={(event, data) => {
+            setCategory(data.value);
           }}
         />
-        
-        <Button type="submit">Create Event</Button>
-      
+
+        <Button type="submit">Submit</Button>
       </Form>
-      
+
       <Message className="message">Your event has been created</Message>
     </>
   );

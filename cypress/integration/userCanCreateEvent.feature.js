@@ -22,7 +22,7 @@ describe("user can create an event", () => {
       cy.get("#description").type("I need a lot of people");
       // cy.get("#category").click()
       // cy.get("#category").click("Sports")
-      cy.get("button").contains("Create Event").click();
+      cy.get("button").contains("Submit").click();
     });
     cy.get(".message").should("contain", "Your event has been created")
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Button } from "semantic-ui-react";
 
 const EventsList = () => {
   const [events, setEvents] = useState([]);
@@ -18,6 +18,7 @@ const EventsList = () => {
 
   return (
     <>
+      <Button type="submit">Create Event</Button>
       {events.map((event) => {
         return (
           <Container
