@@ -73,7 +73,7 @@ const EventCreate = () => {
         <Button type="submit">Submit</Button>
       </Form>
 
-      <Message className="message">Your event has been created</Message>
+      <Message className="message">"Your event has been created"</Message>
     </>
   );
 };
