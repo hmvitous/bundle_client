@@ -32,6 +32,7 @@ const EventCreate = () => {
       },
     });
   };
+  const [createMessage, setCreateMessage] = React.useState(false);
 
   return (
     <>
@@ -70,10 +71,11 @@ const EventCreate = () => {
           }}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" onClick={() =>{setCreateMessage(!createMessage)}}>submit</Button>
       </Form>
 
-      <Message className="message">"Your event has been created"</Message>
+      {createMessage && 
+      <Message className="message">"Your event has been created"</Message>}
     </>
   );
 };
