@@ -16,9 +16,12 @@ const EventsList = () => {
     fetchEvents();
   }, []);
 
+ 
+  
+
   return (
     <>
-      <Button type="submit">Create Event</Button>
+      
       {events.map((event) => {
         return (
           <Container

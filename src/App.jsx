@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EventsList from "./components/EventsList";
-import EventCreate from "./components/EventCreate"
+
+import { Button } from "semantic-ui-react";
 
 const App = () => {
   return (
@@ -8,7 +9,8 @@ const App = () => {
       <h1>BundleUp</h1>
       <div>
         <EventsList />
-        <EventCreate />
+        <Button type="submit">Create Event</Button>
+        
       </div>
     </>
   );
