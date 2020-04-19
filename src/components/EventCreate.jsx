@@ -65,10 +65,8 @@ const EventCreate = () => {
 
         <Form.Select
           name="category"
-          id="category"
           fluid
           label="Category"
-          debugger
           options={categoryOptions}
           placeholder="Category"
           onChange={(data) => {
@@ -77,6 +75,7 @@ const EventCreate = () => {
         />
 
         <Button
+          id="submit"
           type="submit"
           onClick={() => {
             setCreateMessage(!createMessage);
