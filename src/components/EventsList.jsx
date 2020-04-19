@@ -8,7 +8,7 @@ const EventsList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("/events");
+        const response = await axios.get("/api/events");
         setEvents(response.data.events);
       } catch (error) {}
     };

@@ -28,7 +28,7 @@ const EventCreate = () => {
   const [people, setPeople] = useState("");
 
   const submitEvent = async (event) => {
-    const response = await axios.post("/events", {
+    const response = await axios.post("/api/events", {
       event: {
         title: event.target.title.value,
         description: event.target.description.value,

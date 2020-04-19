@@ -4,7 +4,7 @@ describe("user can create an event", () => {
     cy.server();
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/events",
+      url: "http://localhost:3000/api/events",
       response: "fixture:create_event_response.json",
     });
   });
