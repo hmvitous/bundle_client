@@ -12,7 +12,7 @@ const App = () => {
     <>
       <h1>BundleUp</h1>
       <div>
-        <Button id="create-button" onClick={() =>{setCreateEvent(!createEvent)}}> Create Event </Button>
+        <Button id="create-button" color="blue" onClick={() =>{setCreateEvent(!createEvent)}}> Create Event </Button>
         {createEvent && <EventCreate />}
         {showEvent && <EventsList />}
       </div>

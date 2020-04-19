@@ -49,13 +49,14 @@ const EventCreate = () => {
 
         <Form.Field>
           <label>Description</label>
-          <input id="description" placeholder="Description" />
+          <textarea id="description" placeholder="Description" />
         </Form.Field>
 
         <Form.Select
           name="people"
           fluid
           label="Number of People"
+          size="tiny"
           options={peopleAmount}
           placeholder="Max limit 10"
           onChange={(data) => {
@@ -67,6 +68,7 @@ const EventCreate = () => {
           name="category"
           fluid
           label="Category"
+          size="tiny"
           options={categoryOptions}
           placeholder="Category"
           onChange={(data) => {
@@ -76,6 +78,7 @@ const EventCreate = () => {
 
         <Button
           id="submit"
+          color="blue"
           type="submit"
           onClick={() => {
             setCreateMessage(!createMessage);
@@ -87,7 +90,7 @@ const EventCreate = () => {
 
       {createMessage && (
         <Message id="create-message" className="create-message">
-          "Your event has been created"
+          "Your event has been created",
         </Message>
       )}
     </>
