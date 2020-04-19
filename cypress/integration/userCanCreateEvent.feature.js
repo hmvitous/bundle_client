@@ -20,4 +20,3 @@ describe("user can create an event", () => {
     cy.get("#create-message").should("contain", "Your event has been created");
   });
 });
-n
