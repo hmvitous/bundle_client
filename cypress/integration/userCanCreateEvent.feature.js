@@ -9,18 +9,15 @@ describe("user can create an event", () => {
     });
   });
 
-  it("see create event form", () => {
-    cy.get("#create-form").should("contain", "Title");
-    cy.get("#create-form").should("contain", "Description");
-    cy.get("#create-form").should("contain", "Category");
-  });
-
-  it("Can create event", () => {
+  it("succesfully see create event", () => {
+    cy.get("#create-button").contains("Create Event").click();
     cy.get("#create-form").within(() => {
       cy.get("#title").type("Play baseball");
       cy.get("#description").type("I need a lot of people");
+      cy.get("Number of People").type("5");
       cy.get("button").contains("Submit").click();
     });
-    cy.get(".message").should("contain", "Your event has been created");
+    cy.get("#create-message").should("contain", "Your event has been created");
   });
 });
+n
