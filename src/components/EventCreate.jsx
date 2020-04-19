@@ -75,7 +75,7 @@ const EventCreate = () => {
       </Form>
 
       {createMessage && 
-      <Message className="message">"Your event has been created"</Message>}
+      <Message id="create-message" className="create-message">"Your event has been created"</Message>}
     </>
   );
 };
