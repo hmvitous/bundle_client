@@ -6,7 +6,7 @@ import EventCreate from "./components/EventCreate";
 const App = () => {
 
   const [createEvent, setCreateEvent] = React.useState(false);
-  const [showEvent, setShowEvent] = React.useState(true);
+  const [showEvent ] = React.useState(true);
   return (
     <>
       <h1>BundleUp</h1>

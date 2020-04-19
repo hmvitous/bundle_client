@@ -16,6 +16,11 @@ const peopleAmount = [
   { key: "3", text: "3", value: "3" },
   { key: "4", text: "4", value: "4" },
   { key: "5", text: "5", value: "5" },
+  { key: "6", text: "6", value: "6" },
+  { key: "7", text: "7", value: "7" },
+  { key: "8", text: "8", value: "8" },
+  { key: "9", text: "9", value: "9" },
+  { key: "10", text: "10", value: "10" },
 ];
 
 const EventCreate = () => {
@@ -53,7 +58,7 @@ const EventCreate = () => {
           label="Number of People"
           options={peopleAmount}
           placeholder="Max limit 10"
-          onChange={(event, data) => {
+          onChange={(data) => {
             setPeople(data.value);
           }}
         />
@@ -66,16 +71,26 @@ const EventCreate = () => {
           debugger
           options={categoryOptions}
           placeholder="Category"
-          onChange={(event, data) => {
+          onChange={(data) => {
             setCategory(data.value);
           }}
         />
 
-        <Button type="submit" onClick={() =>{setCreateMessage(!createMessage)}}>submit</Button>
+        <Button
+          type="submit"
+          onClick={() => {
+            setCreateMessage(!createMessage);
+          }}
+        >
+          submit
+        </Button>
       </Form>
 
-      {createMessage && 
-      <Message id="create-message" className="create-message">"Your event has been created"</Message>}
+      {createMessage && (
+        <Message id="create-message" className="create-message">
+          "Your event has been created"
+        </Message>
+      )}
     </>
   );
 };
