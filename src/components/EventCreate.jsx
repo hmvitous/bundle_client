@@ -41,15 +41,17 @@ const EventCreate = () => {
 
   return (
     <>
+    {!createMessage && (
       <Form id="create-form" onSubmit={submitEvent}>
         <Form.Field>
           <label>Title</label>
-          <input id="title" placeholder="Title" />
+          <input  id="title" placeholder="Title" required />
+
         </Form.Field>
 
         <Form.Field>
           <label>Description</label>
-          <textarea id="description" placeholder="Description" />
+          <textarea  id="description" placeholder="Description" required/>
         </Form.Field>
 
         <Form.Select
@@ -87,7 +89,7 @@ const EventCreate = () => {
           submit
         </Button>
       </Form>
-
+)}
       {createMessage && (
         <Message id="create-message" className="create-message">
           "Your event has been created",
