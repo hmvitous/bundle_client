@@ -7,9 +7,18 @@ describe("user can create an event", () => {
       url: "http://localhost:3000/api/events",
       response: "fixture:create_event_response.json",
     });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/events",
+      response: "fixture:events_list.json",
+    });
   });
 
   it("succesfully see create event", () => {
+    cy.get("#event-1").within(() => {
+      cy.get("#title").should("contain", "Play Soccer");
+      cy.get("#description").should("contain", "We need more players");
+    });
     cy.get("#create-button").contains("Create Event").click();
     cy.get("#create-form").within(() => {
       cy.get("#title").type("Play baseball");
@@ -20,7 +29,7 @@ describe("user can create an event", () => {
       cy.get('div[role="option"]').contains("Outdoors").click();
       cy.get("#submit").click();
     });
-    cy.get("#create-message").should("contain", "Your event has been created");
+    cy.get("#create-message").should("contain", "Your event has been created!");
     cy.get("#event-3").within(() => {
       cy.get("#title").should("contain", "Play baseball");
       cy.get("#description").should("contain", "I need a lot of people");

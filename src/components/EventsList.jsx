@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Container, Header } from "semantic-ui-react";
 
 const EventsList = () => {
-  const [events, setEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
 
-  const fetchEvents = async () => {
-    try {
-      const response = await axios.get("/api/events");
-      setEvents(response.data.events);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+  // const fetchEvents = async () => {
+  //   try {
+  //     const response = await axios.get("/api/events");
+  //     setEvents(response.data.events);
+  //   } catch (error) {}
+  // };
+  // useEffect(() => {
+  //   fetchEvents();
+  // }, []);
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
+
 const categoryOptions = [
   { key: "s", text: "Sports", value: "sports" },
   { key: "c", text: "Casual", value: "casual" },
@@ -43,7 +44,7 @@ const EventCreate = () => {
     if (error === false) {
       let response = submitEvent(event);
       console.log(response);
-      setCreateMessage("Your event has been created");
+      setCreateMessage("Your event has been created!");
     }
   };
   const submitEvent = async (event) => {
