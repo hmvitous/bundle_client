@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Message, StepDescription } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 const categoryOptions = [
   { key: "s", text: "Sports", value: "sports" },
@@ -21,34 +21,34 @@ const peopleAmount = [
   { key: "10", text: "10", value: "10" },
 ];
 const errorStyle = {
-  color: 'red'
-}
+  color: "red",
+};
 const EventCreate = () => {
-  const [hasErrors, setHasErrors] = useState(false);
+  const [hasErrors] = useState(false);
   const [category, setCategory] = useState("");
   const [people, setPeople] = useState("");
-  const [titleEmpty, setTitleEmpty ] = useState("");
+  const [titleEmpty, setTitleEmpty] = useState("");
   const [descriptionEmpty, setDescriptionEmpty] = useState("");
-  const [createMessage, setCreateMessage ] = useState("");
+  const [createMessage, setCreateMessage] = useState("");
   let error = false;
   const validateForm = (event) => {
-    if(!event.target.title.value){
-      setTitleEmpty( "Title can't be empty");
+    if (!event.target.title.value) {
+      setTitleEmpty("Title can't be empty");
       error = true;
     }
-    if(!event.target.description.value){
+    if (!event.target.description.value) {
       setDescriptionEmpty(" Description can't be empty");
       error = true;
     }
-    if(error === false){
-     let response = submitEvent(event);
+    if (error === false) {
+      let response = submitEvent(event);
       console.log(response);
-      setCreateMessage ("Your event has been created");
+      setCreateMessage("Your event has been created");
     }
-  }
+  };
   const submitEvent = async (event) => {
     debugger;
-    if(!hasErrors){
+    if (!hasErrors) {
       console.log("made call");
       return await axios.post("/api/events", {
         event: {
@@ -62,51 +62,50 @@ const EventCreate = () => {
   };
   return (
     <>
-     {!createMessage && (
-      <Form id="create-form" onSubmit={validateForm}>
-  <span style={ errorStyle }>{ titleEmpty }{ descriptionEmpty }</span>
-        <Form.Field>
-          <label>Title</label>
-          <input id="title" placeholder="Title" />
-        </Form.Field>
-        <Form.Field>
-          <label>Description</label>
-          <textarea id="description" placeholder="Description" />
-        </Form.Field>
-        <Form.Select
-          name="people"
-          fluid
-          label="Number of People"
-          size="tiny"
-          options={peopleAmount}
-          placeholder="Max limit 10"
-          default= "2"
-          onChange={(data) => {
-            setPeople(data.value);
-          }}
-        />
-        <Form.Select
-          name="category"
-          fluid
-          label="Category"
-          size="tiny"
-          options={categoryOptions}
-          placeholder="Category"
-          default="outdoors"
-          onChange={(data) => {
-            setCategory(data.value);
-          }}
-        />
-        <Button
-          id="submit"
-          color="blue"
-          type="submit"
-        >
-          submit
-        </Button>
-      </Form>
-     )}
-          <span id="create-message">{ createMessage }</span>
+      {!createMessage && (
+        <Form id="create-form" onSubmit={validateForm}>
+          <span style={errorStyle}>
+            {titleEmpty}
+            {descriptionEmpty}
+          </span>
+          <Form.Field>
+            <label>Title</label>
+            <input id="title" placeholder="Title" />
+          </Form.Field>
+          <Form.Field>
+            <label>Description</label>
+            <textarea id="description" placeholder="Description" />
+          </Form.Field>
+          <Form.Select
+            name="people"
+            fluid
+            label="Number of People"
+            size="tiny"
+            options={peopleAmount}
+            placeholder="Max limit 10"
+            default="2"
+            onChange={(data) => {
+              setPeople(data.value);
+            }}
+          />
+          <Form.Select
+            name="category"
+            fluid
+            label="Category"
+            size="tiny"
+            options={categoryOptions}
+            placeholder="Category"
+            default="outdoors"
+            onChange={(data) => {
+              setCategory(data.value);
+            }}
+          />
+          <Button id="submit" color="blue" type="submit">
+            submit
+          </Button>
+        </Form>
+      )}
+      <span id="create-message">{createMessage}</span>
     </>
   );
 };

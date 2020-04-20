@@ -5,23 +5,18 @@ import { Container, Header } from "semantic-ui-react";
 const EventsList = () => {
   const [events, setEvents] = useState([]);
 
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get("/api/events");
+      setEvents(response.data.events);
+    } catch (error) {}
+  };
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get("/api/events");
-        setEvents(response.data.events);
-      } catch (error) {}
-    };
-
     fetchEvents();
   }, []);
 
- 
-  
-
   return (
     <>
-      
       {events.map((event) => {
         return (
           <Container
