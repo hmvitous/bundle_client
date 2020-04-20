@@ -62,6 +62,7 @@ const EventCreate = () => {
   };
   return (
     <>
+     {!createMessage && (
       <Form id="create-form" onSubmit={validateForm}>
   <span style={ errorStyle }>{ titleEmpty }{ descriptionEmpty }</span>
         <Form.Field>
@@ -104,6 +105,7 @@ const EventCreate = () => {
           submit
         </Button>
       </Form>
+     )}
           <span id="create-message">{ createMessage }</span>
     </>
   );
