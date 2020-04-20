@@ -60,4 +60,28 @@ describe("user cannot create event with empty fields", () => {
     });
     it("contain", "# Description can't be empty");
   });
+
+  it("cannot create event without specifying how many people are invited", () => {
+    cy.get("#create-button").contains("Create Event").click();
+    cy.get("#create-form").within(() => {
+      cy.get("#title").type("Play baseball");
+      cy.get("#description").type("I need a lot of people");
+      cy.get("div[name='category']").click();
+      cy.get('div[role="option"]').contains("Outdoors").click();
+      cy.get("#submit").click();
+    });
+    it("contain", "# Description can't be empty");
+  });
+
+  it("cannot create event without specifying category", () => {
+    cy.get("#create-button").contains("Create Event").click();
+    cy.get("#create-form").within(() => {
+      cy.get("#title").type("Play baseball");
+      cy.get("#description").type("I need a lot of people");
+      cy.get("div[name='people']").click();
+      cy.get('div[role="option"]').contains("5").click();
+      cy.get("#submit").click();
+    });
+    it("contain", "# Description can't be empty");
+  });
 });
