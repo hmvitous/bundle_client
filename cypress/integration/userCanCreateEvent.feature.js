@@ -26,4 +26,22 @@ describe("user can create an event", () => {
     });
     cy.get("#create-message").should("contain", "Your event has been created");
   });
+
+  it("unsuccsesfull, missing titile", () => {
+    cy.get("#create-button").contains("Create Event").click();
+    cy.get("#create-form").within(() => {
+
+      cy.get("#description").type("I need a lot of people");
+      cy.get("div[name='people']").click();
+      cy.get('div[role="option"]')
+        .contains("5")
+        .click();
+        cy.get("div[name='category']").click();
+        cy.get('div[role="option"]')
+        .contains("Outdoors")
+        .click();
+      cy.get("#submit").click();
+    });
+    cy.get("validateForm").should("contain", "Cant be empty")
+  });
 });
