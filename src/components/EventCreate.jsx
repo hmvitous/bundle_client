@@ -24,7 +24,7 @@ const peopleAmount = [
 const errorStyle = {
   color: "red",
 };
-const EventCreate = () => {
+const EventCreate = (props) => {
   const [hasErrors] = useState(false);
   const [category, setCategory] = useState("");
   const [people, setPeople] = useState("");
@@ -34,21 +34,21 @@ const EventCreate = () => {
   let error = false;
   const validateForm = (event) => {
     if (!event.target.title.value) {
-      setTitleEmpty("Title can't be empty");
+      setTitleEmpty("Title can't be empty ");
       error = true;
     }
     if (!event.target.description.value) {
-      setDescriptionEmpty(" Description can't be empty");
+      setDescriptionEmpty("Description can't be empty");
       error = true;
     }
     if (error === false) {
-      let response = submitEvent(event);
-      console.log(response);
-      setCreateMessage("Your event has been created!");
+      submitEvent(event).then((response) => {
+        setCreateMessage(response.data.message)
+        props.fetchEvents()
+      })
     }
   };
   const submitEvent = async (event) => {
-    debugger;
     if (!hasErrors) {
       console.log("made call");
       return await axios.post("/api/events", {

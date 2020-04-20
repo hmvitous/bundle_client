@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import { Container, Header } from "semantic-ui-react";
 
-const EventsList = () => {
+const EventsList = (props) => {
   // const [events, setEvents] = useState([]);
 
   // const fetchEvents = async () => {
@@ -17,7 +17,7 @@ const EventsList = () => {
 
   return (
     <>
-      {events.map((event) => {
+      {props.events.map((event) => {
         return (
           <Container
             className="ui container"

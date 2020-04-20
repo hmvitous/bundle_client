@@ -1,6 +1,5 @@
 describe("user can create an event", () => {
   beforeEach(() => {
-    cy.visit("/");
     cy.server();
     cy.route({
       method: "POST",
@@ -12,9 +11,15 @@ describe("user can create an event", () => {
       url: "http://localhost:3000/api/events",
       response: "fixture:events_list.json",
     });
+    cy.visit("/");
   });
 
-  it("succesfully see create event", () => {
+  it("succesfully creates an event", () => {
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/events",
+      response: "fixture:events_list_after_creation.json",
+    });
     cy.get("#event-1").within(() => {
       cy.get("#title").should("contain", "Play Soccer");
       cy.get("#description").should("contain", "We need more players");
@@ -29,7 +34,7 @@ describe("user can create an event", () => {
       cy.get('div[role="option"]').contains("Outdoors").click();
       cy.get("#submit").click();
     });
-    cy.get("#create-message").should("contain", "Your event has been created!");
+    cy.get("#create-message").should("contain", "Your event has been created");
     cy.get("#event-3").within(() => {
       cy.get("#title").should("contain", "Play baseball");
       cy.get("#description").should("contain", "I need a lot of people");

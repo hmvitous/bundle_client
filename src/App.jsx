@@ -16,8 +16,6 @@ const App = () => {
   };
   useEffect(() => {
     fetchEvents();
-
-    
   }, []);
   return (
     <>
@@ -33,8 +31,8 @@ const App = () => {
           {" "}
           Create Event{" "}
         </Button>
-        {createEvent && <EventCreate />}
-        {showEvent && <EventsList />}
+        {createEvent && <EventCreate fetchEvents={fetchEvents} />}
+        {showEvent && <EventsList events={events} />}
       </div>
     </>
   );
