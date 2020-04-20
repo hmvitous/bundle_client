@@ -45,19 +45,6 @@ describe("user cannot create event with empty fields", () => {
       cy.get('div[role="option"]').contains("Outdoors").click();
       cy.get("#submit").click();
     });
-    it("contain", "#Cant be empty");
-  });
-
-  it("cannot create event without a description", () => {
-    cy.get("#create-button").contains("Create Event").click();
-    cy.get("#create-form").within(() => {
-      cy.get("#title").type("Play baseball");
-      cy.get("div[name='people']").click();
-      cy.get('div[role="option"]').contains("5").click();
-      cy.get("div[name='category']").click();
-      cy.get('div[role="option"]').contains("Outdoors").click();
-      cy.get("#submit").click();
-    });
-    it("contain", "#Provide a description");
-  });
-});
+    it("contain", "#Title can't be empty");
+   })
+  })
