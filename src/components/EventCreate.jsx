@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
 import axios from "axios";
-
 const categoryOptions = [
   { key: "s", text: "Sports", value: "sports" },
   { key: "c", text: "Casual", value: "casual" },
@@ -9,7 +8,6 @@ const categoryOptions = [
   { key: "g", text: "Games", value: "games" },
   { key: "f", text: "Food", value: "food" },
 ];
-
 const peopleAmount = [
   { key: "1", text: "1", value: "1" },
   { key: "2", text: "2", value: "2" },
@@ -22,38 +20,52 @@ const peopleAmount = [
   { key: "9", text: "9", value: "9" },
   { key: "10", text: "10", value: "10" },
 ];
-
+const errorStyle = {
+  color: 'red'
+}
 const EventCreate = () => {
+  const [hasErrors, setHasErrors] = useState(false);
   const [category, setCategory] = useState("");
   const [people, setPeople] = useState("");
-
+  const [titleEmpty, setTitleEmpty] = useState("");
+  const [createMessage, setCreateMessage] = useState("");
+  let error = false;
+  const validateForm = (event) => {
+    if(!event.target.title.value){
+      setTitleEmpty("Cant be empty");
+      error = true;
+    }
+    if(error === false){
+     let response = submitEvent(event);
+      console.log(response);
+      setCreateMessage("Your event has been created");
+    }
+  }
   const submitEvent = async (event) => {
-    const response = await axios.post("/api/events", {
-      event: {
-        title: event.target.title.value,
-        description: event.target.description.value,
-        category: category,
-        attendees: people,
-      },
-    });
+    if(!hasErrors){
+      console.log("made call");
+      return await axios.post("/api/events", {
+        event: {
+          title: event.target.title.value,
+          description: event.target.description.value,
+          category: category,
+          attendees: people,
+        },
+      });
+    }
   };
-  const [createMessage, setCreateMessage] = React.useState(false);
-
   return (
     <>
-    {!createMessage && (
-      <Form id="create-form" onSubmit={submitEvent}>
+      <Form id="create-form" onSubmit={validateForm}>
+  <span style={errorStyle}>{titleEmpty}</span>
         <Form.Field>
           <label>Title</label>
-          <input  id="title" placeholder="Title" required />
-
+          <input id="title" placeholder="Title" />
         </Form.Field>
-
         <Form.Field>
           <label>Description</label>
-          <textarea  id="description" placeholder="Description" required/>
+          <textarea id="description" placeholder="Description" />
         </Form.Field>
-
         <Form.Select
           name="people"
           fluid
@@ -65,7 +77,6 @@ const EventCreate = () => {
             setPeople(data.value);
           }}
         />
-
         <Form.Select
           name="category"
           fluid
@@ -77,26 +88,16 @@ const EventCreate = () => {
             setCategory(data.value);
           }}
         />
-
         <Button
           id="submit"
           color="blue"
           type="submit"
-          onClick={() => {
-            setCreateMessage(!createMessage);
-          }}
         >
           submit
         </Button>
       </Form>
-)}
-      {createMessage && (
-        <Message id="create-message" className="create-message">
-          "Your event has been created",
-        </Message>
-      )}
+          <span>{createMessage}</span>
     </>
   );
 };
-
 export default EventCreate;
