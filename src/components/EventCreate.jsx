@@ -33,11 +33,11 @@ const EventCreate = () => {
   let error = false;
   const validateForm = (event) => {
     if(!event.target.title.value){
-      setTitleEmpty( "Cant be empty");
+      setTitleEmpty( "Title can't be empty");
       error = true;
     }
     if(!event.target.description.value){
-      setDescriptionEmpty("Provide a description");
+      setDescriptionEmpty(" Description can't be empty");
       error = true;
     }
     if(error === false){
