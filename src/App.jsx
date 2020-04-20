@@ -5,14 +5,14 @@ import EventCreate from "./components/EventCreate";
 import axios from "axios"
 const App = () => {
   const [createEvent, setCreateEvent] = useState(false);
-  const [showEvent, setShowEvent] = useState(true);
+  const [showEvent] = useState(true);
   const [events, setEvents] = useState([]);
 
   const fetchEvents = async () => {
     try {
       const response = await axios.get("/api/events");
       setEvents(response.data.events);
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     fetchEvents();
