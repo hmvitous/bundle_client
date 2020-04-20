@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Message } from "semantic-ui-react";
+import { Button, Form, Message, StepDescription } from "semantic-ui-react";
 import axios from "axios";
 const categoryOptions = [
   { key: "s", text: "Sports", value: "sports" },
@@ -28,6 +28,7 @@ const EventCreate = () => {
   const [category, setCategory] = useState("");
   const [people, setPeople] = useState("");
   const [titleEmpty, setTitleEmpty] = useState("");
+  const [descriptionEmpty, setDescriptionEmpty] = useState("");
   const [createMessage, setCreateMessage] = useState("");
   let error = false;
   const validateForm = (event) => {
@@ -35,10 +36,14 @@ const EventCreate = () => {
       setTitleEmpty("Cant be empty");
       error = true;
     }
+    if(!event.target.description.value){
+      setDescriptionEmpty("Provide a description");
+      error = true;
+    }
     if(error === false){
      let response = submitEvent(event);
       console.log(response);
-      setCreateMessage("Your event has been created");
+      setCreateMessage ("Your event has been created");
     }
   }
   const submitEvent = async (event) => {
@@ -57,7 +62,7 @@ const EventCreate = () => {
   return (
     <>
       <Form id="create-form" onSubmit={validateForm}>
-  <span style={errorStyle}>{titleEmpty}</span>
+  <span style={errorStyle}>{titleEmpty}{descriptionEmpty}</span>
         <Form.Field>
           <label>Title</label>
           <input id="title" placeholder="Title" />
@@ -73,6 +78,7 @@ const EventCreate = () => {
           size="tiny"
           options={peopleAmount}
           placeholder="Max limit 10"
+          default= "2"
           onChange={(data) => {
             setPeople(data.value);
           }}
@@ -84,6 +90,7 @@ const EventCreate = () => {
           size="tiny"
           options={categoryOptions}
           placeholder="Category"
+          default="outdoors"
           onChange={(data) => {
             setCategory(data.value);
           }}
@@ -96,7 +103,7 @@ const EventCreate = () => {
           submit
         </Button>
       </Form>
-          <span>{createMessage}</span>
+          <span id="create-message">{ createMessage }</span>
     </>
   );
 };
