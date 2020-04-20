@@ -54,6 +54,6 @@ describe("user cannot create event with empty fields", () => {
         .click();
       cy.get("#submit").click();
     });
-    it("contain", "#Cant be empty");
+    it("contain", "#Title can't be empty");
    })
   })
