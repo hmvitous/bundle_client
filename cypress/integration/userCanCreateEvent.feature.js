@@ -21,6 +21,10 @@ describe("user can create an event", () => {
       cy.get("#submit").click();
     });
     cy.get("#create-message").should("contain", "Your event has been created");
+    cy.get("#event-3").within(() => {
+      cy.get("#title").should("contain", "Play baseball");
+      cy.get("#description").should("contain", "I need a lot of people");
+    });
   });
 });
 
