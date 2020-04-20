@@ -27,13 +27,13 @@ const EventCreate = () => {
   const [hasErrors, setHasErrors] = useState(false);
   const [category, setCategory] = useState("");
   const [people, setPeople] = useState("");
-  const [titleEmpty, setTitleEmpty] = useState("");
+  const [titleEmpty, setTitleEmpty ] = useState("");
   const [descriptionEmpty, setDescriptionEmpty] = useState("");
-  const [createMessage, setCreateMessage] = useState("");
+  const [createMessage, setCreateMessage ] = useState("");
   let error = false;
   const validateForm = (event) => {
     if(!event.target.title.value){
-      setTitleEmpty("Cant be empty");
+      setTitleEmpty( "Cant be empty");
       error = true;
     }
     if(!event.target.description.value){
@@ -47,6 +47,7 @@ const EventCreate = () => {
     }
   }
   const submitEvent = async (event) => {
+    debugger;
     if(!hasErrors){
       console.log("made call");
       return await axios.post("/api/events", {
@@ -62,7 +63,7 @@ const EventCreate = () => {
   return (
     <>
       <Form id="create-form" onSubmit={validateForm}>
-  <span style={errorStyle}>{titleEmpty}{descriptionEmpty}</span>
+  <span style={ errorStyle }>{ titleEmpty }{ descriptionEmpty }</span>
         <Form.Field>
           <label>Title</label>
           <input id="title" placeholder="Title" />
