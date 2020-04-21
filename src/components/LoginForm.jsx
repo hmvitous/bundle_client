@@ -2,30 +2,30 @@ import React, { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 
-// const errorStyle = {
-//   color: "red",
-// };
+const errorStyle = {
+  color: "red",
+};
 const LoginForm = (props) => {
   const [hasErrors] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
-  // const [emailEmpty, setEmailEmpty] = useState("");
-  // const [passwordEmpty, setPasswordEmpty] = useState("");
-  // const [wrongCredentials, setWrongCredentials] = useState("");
+  const [emailEmpty, setEmailEmpty] = useState("");
+  const [passwordEmpty, setPasswordEmpty] = useState("");
+  const [wrongCredentials, setWrongCredentials] = useState("");
   let error = false;
-  const authenticateUser = (login) => {
-    // if (!user.target.email.value) {
-    //   setEmailEmpty("email can't be empty");
-    //   error = true;
-    // }
-    // if (!user.target.password.value) {
-    //   setPasswordEmpty("You must provide a password");
-    //   error = true;
-    // }
-    // if (!user.target.email.password.value) {
-    //   setWrongCredentials("Wrong credentials, please try again");
-    // }
+  const authenticateUser = (user) => {
+    if (!user.target.email) {
+      setEmailEmpty("email can't be empty");
+      error = true;
+    }
+    if (!user.target.password) {
+      setPasswordEmpty("You must provide a password");
+      error = true;
+    }
+    if (!user.target.email.password) {
+      setWrongCredentials("Wrong credentials, please try again");
+    }
     if (error === false) {
-      authenticated(login).then((response) => {
+      authenticated(user).then((response) => {
         setLoginMessage(response.data.message);
         props.fetchUser();
       });
@@ -37,7 +37,7 @@ const LoginForm = (props) => {
       console.log("made call");
       return axios.get("/api/users", {
         user: {
-          name: user.target.name.value,
+          name: user.target.name,
         },
       });
     }
@@ -47,11 +47,11 @@ const LoginForm = (props) => {
     <>
       {!loginMessage && (
         <Form id="login-form" onSubmit={authenticateUser}>
-          {/* <span style={errorStyle}>
+          <span style={errorStyle}>
             {wrongCredentials}
             {emailEmpty}
             {passwordEmpty}
-          </span> */}
+          </span>
           <Form.Field>
             <label>Email</label>
             <input name="email" type="email" id="email"></input>
