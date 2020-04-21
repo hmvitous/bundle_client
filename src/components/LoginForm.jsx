@@ -7,7 +7,7 @@ const errorStyle = {
 };
 const LoginForm = (props) => {
   const [hasErrors] = useState(false);
-  const [loginMessage, setLoginMessage] = useState("");
+  const [loginMessage] = useState("");
   const [emailEmpty, setEmailEmpty] = useState("");
   const [passwordEmpty, setPasswordEmpty] = useState("");
   const [wrongCredentials, setWrongCredentials] = useState("");
@@ -25,10 +25,7 @@ const LoginForm = (props) => {
       setWrongCredentials("Wrong credentials, please try again");
     }
     if (error === false) {
-      authenticated(user).then((response) => {
-        setLoginMessage(response.data.message);
-        props.fetchUser();
-      });
+      authenticated = true;
     }
   };
 
