@@ -34,7 +34,7 @@ const App = () => {
         <Button
           id="login"
           onClick={() => {
-            LoginForm(!login);
+            setLoginForm(!login);
           }}
         >
           
