@@ -49,6 +49,7 @@ const EventCreate = (props) => {
     }
   };
   const submitEvent = async (event) => {
+    
     if (!hasErrors) {
       console.log("made call");
       return await axios.post("/api/events", {

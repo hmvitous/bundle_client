@@ -25,13 +25,13 @@ const LoginForm = (props) => {
       setWrongCredentials("Wrong credentials, please try again");
     }
     if (error === false) {
-      authenticated = true;
+      authenticated(user) 
     }
   };
 
   const authenticated = async (user) => {
     if (!hasErrors) {
-      console.log("made call");
+      console.log("Hi", user);
       return axios.get("/api/users", {
         user: {
           name: user.target.name,
@@ -44,7 +44,7 @@ const LoginForm = (props) => {
     <>
       {!loginMessage && (
         <Form id="login-form" onSubmit={authenticateUser}>
-          <span style={errorStyle}>
+          <span id="wrong-message" style={errorStyle}>
             {wrongCredentials}
             {emailEmpty}
             {passwordEmpty}

@@ -31,6 +31,6 @@ describe("User authenticates", () => {
       cy.get("#password").type("wronpassword");
       cy.get("button").contains("Submit").click();
     });
-    cy.get("#message").should("contain", "Wrong credentials, please try again");
+    cy.get("#wrong-message").should("contain", "Wrong credentials, please try again");
   });
 });
