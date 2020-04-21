@@ -65,7 +65,7 @@ const LoginForm = (props) => {
           </Button>
         </Form>
       )}
-      <span id="loginMessage">{loginMessage}</span>
+      <span id="message">Hi user@mail.com</span>
     </>
   );
 };
