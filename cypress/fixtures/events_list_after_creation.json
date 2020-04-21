@@ -1,0 +1,25 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Play Soccer",
+      "description": "We need more players",
+      "category":"Sports",
+      "location":"Hagaparken"
+    },
+    {
+      "id": 2,
+      "title": "Walking on Sunshine",
+      "description": "From Slussen to Skansen",
+      "category":"Outdoors",
+      "location":"Slussen Tunnelbana Station"
+    },
+    {
+      "id": 3,
+      "title": "Play baseball",
+      "description": "I need a lot of people",
+      "category":"Outdoors",
+      "location":"Slussen Tunnelbana Station"
+    }
+  ]
+}

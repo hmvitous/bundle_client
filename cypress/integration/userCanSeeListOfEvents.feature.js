@@ -1,11 +1,11 @@
 describe("user views the list of activities", () => {
   beforeEach(() => {
     cy.server();
-      cy.route({
-        method: "GET",
-        url: "http://localhost:3000/events",
-        response: "fixture:events_list.json",
-      });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/events",
+      response: "fixture:events_list.json",
+    });
     cy.visit("/");
   });
 
