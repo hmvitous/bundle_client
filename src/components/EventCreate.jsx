@@ -43,9 +43,9 @@ const EventCreate = (props) => {
     }
     if (error === false) {
       submitEvent(event).then((response) => {
-        setCreateMessage(response.data.message)
-        props.fetchEvents()
-      })
+        setCreateMessage(response.data.message);
+        props.fetchEvents();
+      });
     }
   };
   const submitEvent = async (event) => {

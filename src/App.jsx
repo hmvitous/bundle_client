@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EventsList from "./components/EventsList";
 import { Button } from "semantic-ui-react";
 import EventCreate from "./components/EventCreate";
-import axios from "axios"
+import axios from "axios";
 const App = () => {
   const [createEvent, setCreateEvent] = useState(false);
   const [showEvent] = useState(true);
@@ -12,7 +12,7 @@ const App = () => {
     try {
       const response = await axios.get("/api/events");
       setEvents(response.data.events);
-    } catch (error) { }
+    } catch (error) {}
   };
   useEffect(() => {
     fetchEvents();
