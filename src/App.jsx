@@ -9,7 +9,7 @@ const App = () => {
   const [createEvent, setCreateEvent] = useState(false);
   const [showEvent] = useState(true);
   const [events, setEvents] = useState([]);
-  const [login, LoginForm] = useState(false);
+  const [login, setLoginForm] = useState(false);
 
   const fetchEvents = async () => {
     try {
@@ -21,10 +21,10 @@ const App = () => {
     fetchEvents();
   }, []);
 
-  const setLoginForm = async () => {
+  const showLoginForm = async () => {
     try {
       const response = await axios.get("/api/users");
-      setLoginForm(response.data.users);
+      showLoginForm(response.data.users);
     } catch (error) {}
   };
   return (

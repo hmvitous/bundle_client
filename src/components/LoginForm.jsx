@@ -5,50 +5,69 @@ import axios from "axios";
 const errorStyle = {
   color: "red",
 };
+const LoginForm = (props) => {
+  const [hasErrors] = useState(false);
+  const [loginMessage, setLoginMessage] = useState("");
+  const [emailEmpty, setEmailEmpty] = useState("");
+  const [passwordEmpty, setPasswordEmpty] = useState("");
+  const [wrongCredentials, setWrongCredentials] = useState("");
+  let error = false;
+  const authenticateUser = (login) => {
+    if (!user.target.email.value) {
+      setEmailEmpty("email can't be empty");
+      error = true;
+    }
+    if (!user.target.password.value) {
+      setPasswordEmpty("You must provide a password");
+      error = true;
+    }
+    if (!user.target.email.password.value) {
+      setWrongCredentials("Wrong credentials, please try again");
+    }
+    if (error === false) {
+      authenticated(login).then((response) => {
+        setLoginMessage(response.data.message);
+        props.fetchUser();
+      });
+    }
+  };
 
-const LoginForm = ({ submitFormHandler }) => {
+  const authenticated = async (user) => {
+    if (!hasErrors) {
+      console.log("made call");
+      return axios.get("/api/users", {
+        user: {
+          name: user.target.name.value,
+        },
+      });
+    }
+  };
+
   return (
-    <form onSubmit={submitFormHandler} id="login">
-      <label>Email</label>
-      <input name="email" type="email" id="email"></input>
-
-      <label>Password</label>
-      <input name="password" type="password" id="password"></input>
-
-      <button id="submit">Submit</button>
-    </form>
+    <>
+      {!loginMessage && (
+        <Form id="login" onSubmit={authenticateUser}>
+          <span style={errorStyle}>
+            {wrongCredentials}
+            {emailEmpty}
+            {passwordEmpty}
+          </span>
+          <Form.Field>
+            <label>Email</label>
+            <input name="email" type="email" id="email"></input>
+          </Form.Field>
+          <Form.Field>
+            <label>Password</label>
+            <input name="password" type="password" id="password"></input>
+          </Form.Field>
+          <Button id="submit" color="blue">
+            Submit
+          </Button>
+        </Form>
+      )}
+      <span id="loginMessage">{loginMessage}</span>
+    </>
   );
 };
-
-const LoginForm = (login) => {
-  return axios.get("/api/users", {
-    user: {
-      name: user.target.name.value,
-    }
-  });
-}
-
-return (
-  <>
-    {!loginMessage && ( 
-      <Form id="login" onSubmit={authenticateUser}>
-        <span style={errorStyle}>
-          {invalidCredentials}
-        </span>
-        <Form.Field>
-          <label>Email</label>
-          <input name="email" type="email" id="email"></input>
-        </Form.Field>
-        <Form.Field>
-          <label>Password</label>
-          <input name="password" type="password" id="password"></input>
-        </Form.Field>
-        <Button id="submit" color="blue">Submit</Button>
-      </Form>
-    )}
-    <span id="loginMessage">{loginMessage}</span>
-  </>
-  
-)
 
 export default LoginForm;
