@@ -1,5 +1,11 @@
 import React from "react";
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Button } from "semantic-ui-react";
+
+const userJoin = (user) => {
+  if (user.authenticated = true) {
+    
+  }
+}
 
 const EventsList = (props) => {
   return (
@@ -12,8 +18,11 @@ const EventsList = (props) => {
             key={event.id}
           >
             <Header id="title">{event.title}</Header>
+            
             <p id="description">{event.description}</p>
+            <Button onClick={userJoin} id="join">You are in!</Button>
           </Container>
+          
         );
       })}
     </>
