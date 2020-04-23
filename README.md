@@ -1,5 +1,2 @@
-# bundle_client
-Final Project February 2020
-Thank you all for being part of this project
-Hunter, Anish, Daniel and Lautaro
-create_event fixed
+[![Netlify Status](https://api.netlify.com/api/v1/badges/01bc3477-4f5a-4654-ad89-93edf79797a3/deploy-status)](https://app.netlify.com/sites/plusyou/deploys)
+[![Build Status](https://semaphoreci.com/api/v1/anish2504/bundle_client/branches/continous_integration_deployment/badge.svg)](https://semaphoreci.com/anish2504/bundle_client)
