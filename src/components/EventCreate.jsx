@@ -31,7 +31,9 @@ const EventCreate = (props) => {
   const [titleEmpty, setTitleEmpty] = useState("");
   const [descriptionEmpty, setDescriptionEmpty] = useState("");
   const [createMessage, setCreateMessage] = useState("");
+
   let error = false;
+  
   const validateForm = (event) => {
     if (!event.target.title.value) {
       setTitleEmpty("Title can't be empty ");

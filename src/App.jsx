@@ -4,18 +4,21 @@ import { Button } from "semantic-ui-react";
 import EventCreate from "./components/EventCreate";
 import axios from "axios";
 import LoginForm from "./components/LoginForm";
+import { useSelector } from "react-redux";
+
 
 const App = () => {
   const [createEvent, setCreateEvent] = useState(false);
-  const [showEvent] = useState(true);
   const [events, setEvents] = useState([]);
   const [login, setLoginForm] = useState(false);
+
+  const authenticated = useSelector(state => state.authenticated)
 
   const fetchEvents = async () => {
     try {
       const response = await axios.get("/api/events");
       setEvents(response.data.events);
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     fetchEvents();
@@ -25,35 +28,39 @@ const App = () => {
     try {
       const response = await axios.get("/api/users");
       showLoginForm(response.data.users);
-    } catch (error) {}
+    } catch (error) { }
   };
+
   return (
     <>
       <h1>BundleUp</h1>
       <div>
-        <Button
-          id="login"
-          onClick={() => {
-            setLoginForm(!login);
-          }}
-        >
-          
-          {" "}
-          Login
-        </Button>
-        <Button
-          id="create-button"
-          color="blue"
-          onClick={() => {
-            setCreateEvent(!createEvent);
-          }}
-        >
-          {" "}
-          Create Event{" "}
-        </Button>
-        {createEvent && <EventCreate fetchEvents={fetchEvents} />}
-        {showEvent && <EventsList events={events} />}
-        {login && <LoginForm login={login} />}
+        {authenticated ?
+          <>
+            <Button
+              id="create-button"
+              color="blue"
+              onClick={() => {
+                setCreateEvent(!createEvent);
+              }}
+            >
+              Create Event
+            </Button>
+
+            {createEvent && <EventCreate fetchEvents={fetchEvents} />}
+          </>
+          :
+          <>
+            <Button
+              id="login"
+              onClick={() => {
+                setLoginForm(!login);
+              }}
+            > Login </Button>
+            {login && <LoginForm login={login} />}
+          </>
+        }
+        <EventsList events={events} />
       </div>
     </>
   );
