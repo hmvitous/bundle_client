@@ -31,7 +31,9 @@ const EventCreate = (props) => {
   const [titleEmpty, setTitleEmpty] = useState("");
   const [descriptionEmpty, setDescriptionEmpty] = useState("");
   const [createMessage, setCreateMessage] = useState("");
+
   let error = false;
+  
   const validateForm = (event) => {
     if (!event.target.title.value) {
       setTitleEmpty("Title can't be empty ");
@@ -51,17 +53,20 @@ const EventCreate = (props) => {
   const submitEvent = async (event) => {
     
     if (!hasErrors) {
-      console.log("made call");
-      return await axios.post("/api/events", {
+      let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"))
+      return await axios.post("/events", {
         event: {
           title: event.target.title.value,
           description: event.target.description.value,
-          category: category,
-          attendees: people,
-        },
-      });
+          category: category.toLowerCase(),
+          attendee_limit: people
+        }
+      },
+      {headers: headers}
+      );
     }
   };
+
   return (
     <>
       {!createMessage && (
@@ -87,7 +92,7 @@ const EventCreate = (props) => {
             placeholder="Max limit 10"
             default="2"
             onChange={(data) => {
-              setPeople(data.value);
+              setPeople(data.target.innerText);
             }}
           />
           <Form.Select
@@ -99,7 +104,7 @@ const EventCreate = (props) => {
             placeholder="Category"
             default="outdoors"
             onChange={(data) => {
-              setCategory(data.value);
+              setCategory(data.target.innerText);
             }}
           />
           <Button id="submit" color="blue" type="submit">
