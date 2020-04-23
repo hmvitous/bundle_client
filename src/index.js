@@ -7,7 +7,7 @@ import axios from "axios";
 import configureStore from "./state/store/configureStore";
 import "./style.css";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "http://localhost:3000/api";
 const store = configureStore();
 window.store = store;
 

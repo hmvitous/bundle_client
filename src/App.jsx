@@ -4,6 +4,7 @@ import { Button } from "semantic-ui-react";
 import EventCreate from "./components/EventCreate";
 import axios from "axios";
 import LoginForm from "./components/LoginForm";
+import EventDetails from './components/EventDetails'
 import { useSelector } from "react-redux";
 
 
@@ -13,23 +14,18 @@ const App = () => {
   const [login, setLoginForm] = useState(false);
 
   const authenticated = useSelector(state => state.authenticated)
+  const showSpecificEvent = useSelector(state => state.showSpecificEvent)
+
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get("/api/events");
+      const response = await axios.get("/events");
       setEvents(response.data.events);
     } catch (error) { }
   };
   useEffect(() => {
     fetchEvents();
   }, []);
-
-  const showLoginForm = async () => {
-    try {
-      const response = await axios.get("/api/users");
-      showLoginForm(response.data.users);
-    } catch (error) { }
-  };
 
   return (
     <>
@@ -60,7 +56,11 @@ const App = () => {
             {login && <LoginForm login={login} />}
           </>
         }
-        <EventsList events={events} />
+        {showSpecificEvent ? 
+          <EventDetails />
+        :
+          <EventsList events={events} />
+        }
       </div>
     </>
   );

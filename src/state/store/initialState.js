@@ -1,7 +1,7 @@
 const initialState = {
-  showLogin: false,
   authenticated: false,
-  userEmail: undefined
+  userEmail: undefined,
+  showSpecificEvent: false
 };
 
 export default initialState;

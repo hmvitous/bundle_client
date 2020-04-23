@@ -54,7 +54,7 @@ const EventCreate = (props) => {
     
     if (!hasErrors) {
       let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"))
-      return await axios.post("/api/events", {
+      return await axios.post("/events", {
         event: {
           title: event.target.title.value,
           description: event.target.description.value,

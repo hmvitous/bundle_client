@@ -7,6 +7,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ...action.payload
       }
+
+    case 'SHOW_SPECIFIC_EVENT': 
+    return {
+      ...state,
+      ...action.payload
+    }
     default:
       return state;
   }
