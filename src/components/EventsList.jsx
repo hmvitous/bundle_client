@@ -26,15 +26,11 @@ const EventsList = (props) => {
             onClick={() => showEvent(event)}
           >
             <Header id="title">{event.title}</Header>
-            
             <p id="description">{event.description}</p>
-            <Button onClick={userJoin} id="join">You are in!</Button>
           </Container>
-          
         );
       })}
     </>
   );
 };
-
 export default EventsList;
