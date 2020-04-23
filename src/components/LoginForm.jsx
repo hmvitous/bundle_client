@@ -1,11 +1,19 @@
 import React, { useState } from "react";
+
+import auth from '../module/auth'
+
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
+
+
+
+
 
 const errorStyle = {
   color: "red",
 };
 const LoginForm = (props) => {
+  const [authenticated, setAuthenticated] = useState(false)
   const [hasErrors] = useState(false);
   const [loginMessage] = useState("");
   const [emailEmpty, setEmailEmpty] = useState("");
@@ -29,16 +37,41 @@ const LoginForm = (props) => {
     }
   };
 
-  const authenticated = async (user) => {
-    if (!hasErrors) {
-      console.log("Hi", user);
-      return axios.get("/api/users", {
-        user: {
-          name: user.target.name,
-        },
-      });
+
+
+  onLogin = async e => {
+    try {
+      e.preventDefault()
+      let response = await auth .signIn(e.target.element.email.value, e.target.elements.password.value);
+
+      setAuthenticated({
+        authenticated: true,
+        userEmail: response.data.email
+      })
+    } catch(error) {
+      console.log(error)
     }
-  };
+  }
+
+  onLogout = () => {
+    auth.signOut()
+
+    setAuthenticated({
+      authenticated: false
+    })
+  }
+
+
+  // const authenticated = async (user) => {
+  //   if (!hasErrors) {
+  //     console.log("Hi", user);
+  //     return axios.get("/api/users", {
+  //       user: {
+  //         name: user.target.name,
+  //       },
+  //     });
+  //   }
+  // };
 
   return (
     <>
