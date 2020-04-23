@@ -13,6 +13,11 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       ...action.payload
     }
+    case 'SHOW_EVENT_LIST':
+      return {
+        ...state,
+        ...action.payload
+      }
     default:
       return state;
   }
