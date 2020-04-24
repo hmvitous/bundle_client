@@ -23,15 +23,9 @@ This client was built to pair up with the api at the url of https://github.com/C
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+The tests that have been written test the basic interface of the website.
+There are tests for creating an event, joining an event, and one for making sure that the lists of events appear on the home view.
+These tests are important when in the development environment, because they automate many things that would be tedious to have to run a server and manually check for.
 
 ## Built With
 
