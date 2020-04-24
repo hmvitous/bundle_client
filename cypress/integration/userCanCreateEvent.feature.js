@@ -1,6 +1,19 @@
 describe("user can create an event", () => {
   beforeEach(() => {
+    cy.visit("/");
     cy.server();
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/auth",
+      response: "fixture:login_response.json"
+    });
+
+    cy.route({
+      method: "GET",
+      url: "**/auth/**",
+      response: "fixture:login_response.json"
+    });
+
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/events",
@@ -11,7 +24,14 @@ describe("user can create an event", () => {
       url: "http://localhost:3000/api/events",
       response: "fixture:events_list.json",
     });
-    cy.visit("/");
+
+    cy.get("#login").click();
+    cy.get("#login-form").within(() => {
+      cy.get("#email").type("user@mail.com");
+      cy.get("#password").type("password");
+      cy.get("button").contains("Submit").click();
+    });
+    cy.wait(7000)
   });
 
   it("succesfully creates an event", () => {
@@ -20,10 +40,7 @@ describe("user can create an event", () => {
       url: "http://localhost:3000/api/events",
       response: "fixture:events_list_after_creation.json",
     });
-    cy.get("#event-1").within(() => {
-      cy.get("#title").should("contain", "Play Soccer");
-      cy.get("#description").should("contain", "We need more players");
-    });
+
     cy.get("#create-button").contains("Create Event").click();
     cy.get("#create-form").within(() => {
       cy.get("#title").type("Play baseball");
@@ -34,6 +51,7 @@ describe("user can create an event", () => {
       cy.get('div[role="option"]').contains("Outdoors").click();
       cy.get("#submit").click();
     });
+    
     cy.get("#create-message").should("contain", "Your event has been created");
     cy.get("#event-3").within(() => {
       cy.get("#title").should("contain", "Play baseball");
@@ -51,6 +69,14 @@ describe("user cannot create event with empty fields", () => {
       url: "http://localhost:3000",
       response: "fixture:create_event_response.json",
     });
+    cy.get("#login").click();
+    cy.get("#login-form").within(() => {
+      cy.get("#email").type("user@mail.com");
+      cy.get("#password").type("password");
+      cy.get("button").contains("Submit").click();
+    });
+    cy.wait(7000)
+
   });
 
   it("cannot create event without a title", () => {
@@ -63,7 +89,7 @@ describe("user cannot create event with empty fields", () => {
       cy.get('div[role="option"]').contains("Outdoors").click();
       cy.get("#submit").click();
     });
-    it("contain", "#Title can't be empty");
+    cy.get('#error-message').should("contain", "Make sure the input fields are not empty.");
   });
 
   it("cannot create event without a description", () => {
@@ -76,7 +102,7 @@ describe("user cannot create event with empty fields", () => {
       cy.get('div[role="option"]').contains("Outdoors").click();
       cy.get("#submit").click();
     });
-    it("contain", "# Description can't be empty");
+    cy.get('#error-message').should("contain", "Make sure the input fields are not empty.");
   });
 
   it("cannot create event without specifying how many people are invited", () => {
@@ -88,7 +114,7 @@ describe("user cannot create event with empty fields", () => {
       cy.get('div[role="option"]').contains("Outdoors").click();
       cy.get("#submit").click();
     });
-    it("contain", "# Description can't be empty");
+    cy.get('#error-message').should("contain", "Make sure the input fields are not empty.");
   });
 
   it("cannot create event without specifying category", () => {
@@ -100,6 +126,6 @@ describe("user cannot create event with empty fields", () => {
       cy.get('div[role="option"]').contains("5").click();
       cy.get("#submit").click();
     });
-    it("contain", "# Description can't be empty");
+    cy.get('#error-message').should("contain", "Make sure the input fields are not empty.");
   });
 });
