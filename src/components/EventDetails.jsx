@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { Button } from "semantic-ui-react";
@@ -6,6 +6,9 @@ import { Button } from "semantic-ui-react";
 const EventDetails = () => {
   const event = useSelector((state) => state.activeEvent);
   const authenticated = useSelector((state) => state.authenticated);
+
+  const [joinMessage, setJoinMessage] = useState("");
+
 
   const dispatch = useDispatch();
   const showEventList = () => {
@@ -27,6 +30,7 @@ const EventDetails = () => {
         {},
         { headers: headers }
       );
+      setJoinMessage(response.data.message);
     } catch (error) {}
   };
   return (
@@ -37,7 +41,9 @@ const EventDetails = () => {
       <p>{event.description}</p>
       <p>Category: {event.category}</p>
       <p>Attendee limit: {event.attendee_limit}</p>
-      {authenticated && <button onClick={joinEvent}>Join event</button>}
+      {authenticated && <Button onClick={joinEvent}>Join event</Button>}
+      <span id="join-message">{joinMessage}</span>
+
     </div>
   );
 };
